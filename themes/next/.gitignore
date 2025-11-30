@@ -1,0 +1,30 @@
+.DS_Store
+.idea/
+*.log
+*.iml
+yarn.lock
+package-lock.json
+node_modules/
+
+# Ignore optional external libraries
+source/lib/*
+
+# Track internal libraries & Ignore unused verdors files
+!source/lib/font-awesome/
+!source/lib/anime.min.js
+!source/lib/velocity/
+
+# 忽略node_modules目录
+node_modules/
+
+# Hexo生成的静态文件
+public/
+# 部署缓存目录
+.deploy_git/
+# Hexo数据库文件
+db.json
+# Node.js依赖目录
+node_modules/
+# 临时文件
+*.log
+.DS_Store
