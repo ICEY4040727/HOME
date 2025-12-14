@@ -1,0 +1,37 @@
+app:
+  version_check_url: "https://raw.githubusercontent.com/sansan0/TrendRadar/master/version"
+  show_version_update: false
+
+crawler:
+  request_interval: 100
+  use_proxy: false
+  default_proxy: ""
+  enable_crawler: true
+
+report:
+  mode: "daily"
+  rank_threshold: 3
+  sort_by_position_first: false
+  max_news_per_keyword: 0
+
+notification:
+  enable_notification: false
+  message_batch_size: 4000
+  dingtalk_batch_size: 20000
+  feishu_batch_size: 29000
+  bark_batch_size: 3600
+  slack_batch_size: 4000
+  batch_send_interval: 1
+  feishu_message_separator: "---"
+
+push_window:
+  enabled: false
+
+weight:
+  rank_weight: 1.0
+  frequency_weight: 1.0
+  hotness_weight: 1.0
+
+platforms:
+  - id: "yuan-meng-60-72-20"
+    name: "知乎"

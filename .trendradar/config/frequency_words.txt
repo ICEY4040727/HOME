@@ -1,0 +1,12 @@
+# frequency_words.txt 示例：每组词以空行分隔
+AI
+机器学习
+
++ChatGPT
++OpenAI
+
+!广告
+
+@10
+区块链
+加密货币

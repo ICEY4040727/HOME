@@ -1,0 +1,83 @@
+// 仅在大屏幕（电脑）上启用三栏布局
+@media (min-width: 1200px) {
+
+  // 1. 让主容器变成 Flex 布局，横向排列
+  .main-inner {
+    display: flex !important;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100% !important; // 撑满宽度
+    max-width: 1400px;      // 限制最大宽度，防止太宽
+    margin: 0 auto;
+  }
+
+  // 2. 左侧边栏样式
+  .content-wrap-left {
+    width: 240px;          // 左侧宽度
+    flex-shrink: 0;        // 不允许缩小
+    margin-right: 12px;    // 右边距
+    order: 1;              // 排列顺序：1
+  }
+  
+  // 修复左侧边栏原本的定位问题
+  .sidebar {
+    position: static !important; // 取消原本的 fixed/absolute 定位
+    width: 100% !important;
+    margin-top: 0 !important;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
+    background: #fff; // 确保有背景色
+  }
+  
+  .sidebar-inner {
+    position: sticky; // 让它随页面滚动悬停
+    top: 20px;
+  }
+
+  // 3. 中间内容区样式
+  .content-wrap {
+    flex: 1;               // 自动占据剩余空间
+    min-width: 0;          // 防止内容溢出
+    width: auto !important;
+    margin: 0 !important;
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
+    order: 2;              // 排列顺序：2
+  }
+
+  // 4. 右侧边栏样式
+  .content-wrap-right {
+    width: 240px;          // 右侧宽度
+    flex-shrink: 0;
+    margin-left: 12px;     // 左边距
+    order: 3;              // 排列顺序：3
+  }
+
+  .right-sidebar {
+    background: #fff;
+    padding: 10px;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
+    position: sticky;      // 悬停效果
+    top: 20px;
+  }
+
+  .right-sidebar .links-of-author {
+    margin-top: 20px;
+  }
+  
+  .right-sidebar .links-of-blogroll {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px dashed #ccc;
+  }
+
+}
+
+// 平板和手机端：隐藏右侧边栏，恢复默认布局
+@media (max-width: 1199px) {
+  .content-wrap-right {
+    display: none;
+  }
+  // 左侧边栏会根据 NexT 原生响应式逻辑自动变为底部或隐藏
+}
