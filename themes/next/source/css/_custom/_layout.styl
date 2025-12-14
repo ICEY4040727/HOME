@@ -1,0 +1,126 @@
+// ==================================================
+// 桌面端三栏布局 (屏幕宽度 > 1200px)
+// ==================================================
+@media (min-width: 1200px) {
+
+  // 1. 隐藏原本页面顶部的 Header
+  body > .container > .header {
+    display: none !important;
+  }
+
+  // 2. 主容器 Flex 布局
+  .main-inner {
+    display: flex !important;
+    justify-content: center;
+    align-items: flex-start !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+  }
+
+  // 3. 左侧栏容器
+  .content-wrap-left {
+    width: 240px;
+    flex-shrink: 0;
+    order: 1;
+    display: flex !important;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  // 4. 修复黑色标题栏 (关键：取消固定定位)
+  .desktop-header-fix {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: relative !important; // 新增：强制相对定位
+  }
+  
+  // 强制 Header 内部所有元素回归文档流
+  .desktop-header-fix .header-inner,
+  .desktop-header-fix .site-meta,
+  .desktop-header-fix .site-brand-container {
+    position: static !important; // 关键修复
+    display: block !important;
+    width: 100% !important;
+    left: auto !important;       // 清除默认的 left: 0
+    transform: none !important;  // 清除可能的偏移
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12);
+  }
+  
+  // 菜单栏样式
+  .desktop-header-fix .site-nav {
+    position: static !important; // 关键修复
+    display: block !important;
+    background: #fff;
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12);
+    width: 100% !important;
+    left: auto !important;
+  }
+  
+  // 确保菜单项正常显示
+  .desktop-header-fix .menu {
+    position: static !important;
+    width: 100% !important;
+  }
+
+  // 5. 左侧头像栏样式
+  .sidebar {
+    position: static !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    background: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12);
+    padding: 0 !important;
+    border-radius: 3px;
+  }
+  .sidebar-inner {
+    position: static !important;
+    width: 100% !important;
+    padding: 15px 10px;
+    box-sizing: border-box;
+    background: #fff;
+    text-align: center;
+  }
+
+  // 6. 中间内容区
+  .content-wrap {
+    flex: 1;
+    min-width: 0;
+    width: auto !important;
+    margin: 0 20px !important;
+    padding: 40px;
+    background: #fff;
+    order: 2;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12);
+    border-radius: 3px;
+  }
+
+  // 7. 右侧栏
+  .content-wrap-right {
+    width: 240px;
+    flex-shrink: 0;
+    order: 3;
+  }
+  
+  .right-sidebar {
+    background: #fff;
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12);
+    position: sticky;
+    top: 20px;
+  }
+}
+
+// ==================================================
+// 移动端适配
+// ==================================================
+@media (max-width: 1199px) {
+  .content-wrap-right { display: none !important; }
+  .content-wrap-left { display: none !important; }
+  body > .container > .header { display: block !important; }
+  .main-inner { display: block !important; }
+}
