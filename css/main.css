@@ -1193,7 +1193,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #6fdd8c;
+  background: #dfffff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2602,4 +2602,11 @@ ul.breadcrumb li + li:last-child {
   .main-inner {
     display: block !important;
   }
+}
+.trend-radar-container iframe {
+  zoom: 0.8;
+  -moz-transform: scale(0.8);
+  -moz-transform-origin: 0 0;
+  width: 125% !important;
+  height: 125% !important;
 }

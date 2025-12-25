@@ -20,19 +20,21 @@
     var CONFIG = {"hostname":"icey4040727.github.io","root":"/HOME/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="这里整理了我所有的学习资料和工具，点击即可下载或打开查看。 笔记 知识定位 点击进入，选择不同领域的知识网络视图。    编程类 C 语言入门指南 (ZIP) 附带源码和练习题。    虚拟机软件 VirtualBox (ZIP) VirtualBox for Windows 11，内含整个软件本体而非下载包，请务必确认你希望将软件置于你选择的下载路径。    其他 2025 趋势报告   如果下">
+  <meta name="description" content="积分与微分的本质作为上大学接触的新的计算，积分与微分相比于四则运算要更难以习惯。  高数老师说：“很多初学者会犯的错误都源于对概念的忽视。其实这和你们接受的初等数学教育有关。”  “你们习惯了四则运算，那些运算法则很自然地被你们运用，你们无需考虑基本法则，只需要闷头算就好了。于是你们以同样方式对待高等数学，很多忽略运算法则的操作就出现了。”  所以我觉得停下来捋一捋积分和微分，对我来说还是有点重要">
 <meta property="og:type" content="website">
-<meta property="og:title" content="资源">
-<meta property="og:url" content="https://icey4040727.github.io/resources/index.html">
+<meta property="og:title" content="ICEY安全屋">
+<meta property="og:url" content="https://icey4040727.github.io/wiki/%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/Definite%20integral,%20indefinite%20integral%20and%20differential.html">
 <meta property="og:site_name" content="ICEY安全屋">
-<meta property="og:description" content="这里整理了我所有的学习资料和工具，点击即可下载或打开查看。 笔记 知识定位 点击进入，选择不同领域的知识网络视图。    编程类 C 语言入门指南 (ZIP) 附带源码和练习题。    虚拟机软件 VirtualBox (ZIP) VirtualBox for Windows 11，内含整个软件本体而非下载包，请务必确认你希望将软件置于你选择的下载路径。    其他 2025 趋势报告   如果下">
+<meta property="og:description" content="积分与微分的本质作为上大学接触的新的计算，积分与微分相比于四则运算要更难以习惯。  高数老师说：“很多初学者会犯的错误都源于对概念的忽视。其实这和你们接受的初等数学教育有关。”  “你们习惯了四则运算，那些运算法则很自然地被你们运用，你们无需考虑基本法则，只需要闷头算就好了。于是你们以同样方式对待高等数学，很多忽略运算法则的操作就出现了。”  所以我觉得停下来捋一捋积分和微分，对我来说还是有点重要">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-12-25T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-25T09:30:57.481Z">
+<meta property="article:published_time" content="2025-12-17T16:04:13.301Z">
+<meta property="article:modified_time" content="2025-12-17T16:04:13.301Z">
 <meta property="article:author" content="ICEY">
+<meta property="article:tag" content="对概念的思考">
+<meta property="article:tag" content="高数上">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://icey4040727.github.io/resources/">
+<link rel="canonical" href="https://icey4040727.github.io/wiki/%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/Definite%20integral,%20indefinite%20integral%20and%20differential">
 
 
 <script id="page-configurations">
@@ -45,7 +47,7 @@
   };
 </script>
 
-  <title>资源 | ICEY安全屋
+  <title> | ICEY安全屋
 </title>
   
 </head>
@@ -310,11 +312,18 @@
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">资源
+<h1 class="post-title" itemprop="name headline">
 </h1>
 
 <div class="post-meta">
   
+  <ul class="breadcrumb">
+          
+            <li><a href="/HOME/wiki/">WIKI</a></li>
+            <li><a href="/HOME/wiki/%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/">一些思考</a></li>
+            <li>DEFINITE INTEGRAL, INDEFINITE INTEGRAL AND DIFFERENTIAL</li>
+          
+  </ul>
 
 </div>
 
@@ -324,31 +333,50 @@
       
       
       <div class="post-body">
-          <p>这里整理了我所有的学习资料和工具，点击即可下载或打开查看。</p>
-<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://mygarden-sable.vercel.app/">知识定位</a><ul>
-<li>点击进入，选择不同领域的知识网络视图。</li>
+          <h1 id="积分与微分的本质"><a href="#积分与微分的本质" class="headerlink" title="积分与微分的本质"></a>积分与微分的本质</h1><pre><code>作为上大学接触的新的计算，积分与微分相比于四则运算要更难以习惯。
+
+高数老师说：“很多初学者会犯的错误都源于对概念的忽视。其实这和你们接受的初等数学教育有关。”
+
+“你们习惯了四则运算，那些运算法则很自然地被你们运用，你们无需考虑基本法则，只需要闷头算就好了。于是你们以同样方式对待高等数学，很多忽略运算法则的操作就出现了。”
+</code></pre>
+<p>所以我觉得停下来捋一捋积分和微分，对我来说还是有点重要的。</p>
+<h2 id="1-不定积分"><a href="#1-不定积分" class="headerlink" title="1.不定积分"></a>1.不定积分</h2><p>若函数 $F(x)$的导数是 $f(x)$（即 $F′(x)&#x3D;f(x)$），则称$F(x)$是 $f(x)$的一个原函数。</p>
+<p>而不定积分定义为“全体原函数的集合”：</p>
+<p>$\int f(x)dx &#x3D; F(x) + C \qquad(C为积分常数)$</p>
+<p>不定积分是微分的“逆过程”</p>
+<p>——微分是“求变化率（导数）”，不定积分是“由变化率还原函数”。</p>
+<p>但这个定义高度抽象：</p>
+<ul>
+<li>只说“全体原函数”，却未解释“原函数从何而来？”</li>
+<li>“为什么原函数之间差一个常数？” </li>
+<li>“原函数一定存在吗？”</li>
 </ul>
-</li>
-</ul>
-<h2 id="编程类"><a href="#编程类" class="headerlink" title="编程类"></a>编程类</h2><ul>
-<li><a href="/downloads/redirect.html?id=c-guide">C 语言入门指南 (ZIP)</a><ul>
-<li>附带源码和练习题。</li>
-</ul>
-</li>
-</ul>
-<h2 id="虚拟机软件"><a href="#虚拟机软件" class="headerlink" title="虚拟机软件"></a>虚拟机软件</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://wwbnj.lanzoul.com/iuSjY3egpmkb">VirtualBox (ZIP)</a><ul>
-<li>VirtualBox for Windows 11，内含整个软件本体而非下载包，请务必确认你希望将软件置于你选择的下载路径。</li>
-</ul>
-</li>
-</ul>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
-<li><a href="/downloads/redirect.html?id=trend-report">2025 趋势报告</a></li>
-</ul>
-<blockquote>
-<p>如果下载链接失效，请在评论区留言。</p>
-</blockquote>
+<p>为了解决以上，我们来唠唠积分上限函数——</p>
+<h2 id="2-积分上限函数"><a href="#2-积分上限函数" class="headerlink" title="2.积分上限函数"></a>2.积分上限函数</h2><p>积分上限函数，它使得定积分的计算变得简洁；它是全体原函数的一个实例，是不定积分的具象化。 ^f61826</p>
+<p>设$f(t)$在区间 $[a,b]$ 上连续，取固定起点 $a$，让上限 $x$ 在 $[a,b]$ 内变动，则定义函数：</p>
+<p>$\Phi(x) &#x3D; \int_{a}^{x} f(t) dt \quad(a\leq x \leq b)$</p>
+<p>这就是积分上限函数。</p>
+<h3 id="积分上限函数的分析性质"><a href="#积分上限函数的分析性质" class="headerlink" title="积分上限函数的分析性质"></a>积分上限函数的分析性质</h3><h4 id="连续性"><a href="#连续性" class="headerlink" title="连续性"></a>连续性</h4><p>无论 $f(t)$ 是“连续”还是“可积”，$Φ(x)$ <strong>始终连续</strong>（<strong>这是定积分“区间可加性”的保证</strong>）</p>
+<h4 id="可导性"><a href="#可导性" class="headerlink" title="可导性"></a>可导性</h4><p>若 $f(x)$ 连续，则 $Φ(x)$ 可导，且导数恰好是$f(x)$ 本身：</p>
+<p>$\Phi’(x) &#x3D; \frac{d}{dx} \int_a^x f(t)dt &#x3D; f(x)$</p>
+<p>严格证明<br>若 f(t)在 $[a,b]$ 上可积，则 $Φ(x)&#x3D;\int_a^xf(t)dt$在 $[a,b]$ 上连续</p>
+<p>分割区间：任取 $x∈[a,b]$和增量 $Δx$，使得 $x+Δx∈[a,b]$</p>
+<p>积分差值：$ΔΦ&#x3D;Φ(x+Δx)−Φ(x)&#x3D;∫_{x}^{x+Δx}f(t)dt$</p>
+<p>利用有界性：设 $∣f(t)∣≤M$，则：</p>
+<p>$∣ΔΦ∣≤∫_x^{x+Δx}f(t)dt ≤ ∫_x^{x+Δx}∣f(t)∣dt≤M∣Δx∣$</p>
+<p>极限分析：$当 Δx→0时，M∣Δx∣→0$，故：</p>
+<p>$\lim_{\Delta x \rightarrow 0}ΔΦ&#x3D;0$</p>
+<h3 id="积分上限函数是不定积分（原函数）的具体化"><a href="#积分上限函数是不定积分（原函数）的具体化" class="headerlink" title="积分上限函数是不定积分（原函数）的具体化"></a>积分上限函数是不定积分（原函数）的具体化</h3><p>不定积分函数可直接由积分上限函数表示为</p>
+<p>$\int f(x)dx &#x3D; \Phi(x) + C &#x3D; \int_a^x f(t)dt + C$</p>
+<p>只要 $f(x)$连续，积分上限函数天然就是它的一个原函数</p>
+<h2 id="3-定积分"><a href="#3-定积分" class="headerlink" title="3.定积分"></a>3.定积分</h2><p>定积分的定义基于黎曼和的极限：</p>
+<p>$\int_a^b f(t)dt &#x3D; \lim_{\lambda\rightarrow 0} \sum_{i&#x3D;1}^n f(\xi_i) \Delta t_i$</p>
+<p><em>其中 λ是区间分割的最大长度，ξ​是子区间的任意点，$\Delta t_i$是子区间长度</em></p>
+<p>通过积分上限函数，定积分的计算变得简洁——牛顿-莱布尼茨公式揭示了定积分与不定积分（原函数）的联系：</p>
+<p>若 F(x)是 f(x)的一个原函数，则：</p>
+<p>$\int_a^b f(x)dx &#x3D; F(b) - F(a)$</p>
+<p>因此，定积分的计算就变成了<strong>原函数的差值</strong>。</p>
+<p>还记得我们在哪里提到过原函数吗？[[Definite integral, indefinite integral and differential#^f61826]]</p>
 
       </div>
       
@@ -356,6 +384,13 @@
       
     </div>
     
+  <ul class="breadcrumb">
+          
+            <li><a href="/HOME/wiki/">WIKI</a></li>
+            <li><a href="/HOME/wiki/%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/">一些思考</a></li>
+            <li>DEFINITE INTEGRAL, INDEFINITE INTEGRAL AND DIFFERENTIAL</li>
+          
+  </ul>
 
     
     
