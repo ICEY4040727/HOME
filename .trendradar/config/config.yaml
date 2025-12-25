@@ -9,7 +9,7 @@ crawler:
   enable_crawler: true
 
 report:
-  mode: "daily"
+  mode: "current"
   rank_threshold: 3
   sort_by_position_first: false
   max_news_per_keyword: 0

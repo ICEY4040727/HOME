@@ -151,3 +151,16 @@
   body > .container > .header { display: block !important; }
   .main-inner { display: block !important; }
 }
+
+// TrendRadar iframe 适配
+.trend-radar-container iframe {
+  // 缩小网页以适应侧边栏宽度 (0.8 表示 80% 大小)
+  // 注意：Firefox 可能不支持 zoom，需要用 transform
+  zoom: 0.8; 
+  -moz-transform: scale(0.8);
+  -moz-transform-origin: 0 0;
+  
+  // 只有当缩放后，宽度才需要补偿 (100% / 0.8 = 125%)
+  width: 125% !important;
+  height: 125% !important;
+}
