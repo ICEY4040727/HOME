@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://icey4040727.github.io/wiki/specific%20exercise/%E5%90%88%E7%90%86%E6%8B%86%E5%B9%B6%E9%A1%B9.html</loc>
+    <loc>https://icey4040727.github.io/wiki/specific%20exercise/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86-%E6%9C%89%E7%90%86%E5%88%86%E5%BC%8F-%E9%85%8D%E5%87%91.html</loc>
     
     <lastmod>2025-12-26</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://icey4040727.github.io/wiki/specific%20exercise/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86-%E6%9C%89%E7%90%86%E5%88%86%E5%BC%8F-%E9%85%8D%E5%87%91.html</loc>
+    <loc>https://icey4040727.github.io/wiki/specific%20exercise/%E5%90%88%E7%90%86%E6%8B%86%E5%B9%B6%E9%A1%B9.html</loc>
     
     <lastmod>2025-12-26</lastmod>
     
@@ -83,15 +83,6 @@
   </url>
   
   <url>
-    <loc>https://icey4040727.github.io/wiki/specific%20exercise/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86-%E6%9C%89%E7%90%86%E5%88%86%E5%BC%8F-%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3-1.html</loc>
-    
-    <lastmod>2025-12-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://icey4040727.github.io/wiki/specific%20exercise/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86-%E6%9C%89%E7%90%86%E5%88%86%E5%BC%8F-%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3-2.html</loc>
     
     <lastmod>2025-12-26</lastmod>
@@ -101,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://icey4040727.github.io/wiki/specific%20exercise/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86-%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0-%E7%89%B9%E6%AE%8A%E6%96%B9%E6%B3%95.html</loc>
+    <loc>https://icey4040727.github.io/wiki/specific%20exercise/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86-%E6%9C%89%E7%90%86%E5%88%86%E5%BC%8F-%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3-1.html</loc>
     
     <lastmod>2025-12-26</lastmod>
     
@@ -111,6 +102,15 @@
   
   <url>
     <loc>https://icey4040727.github.io/wiki/specific%20exercise/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86-%E6%9C%89%E7%90%86%E5%88%86%E5%BC%8F-%E5%88%86%E9%83%A8%E7%A7%AF%E5%88%86.html</loc>
+    
+    <lastmod>2025-12-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://icey4040727.github.io/wiki/specific%20exercise/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86-%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0-%E7%89%B9%E6%AE%8A%E6%96%B9%E6%B3%95.html</loc>
     
     <lastmod>2025-12-26</lastmod>
     
@@ -155,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://icey4040727.github.io/wiki/Computational%20technologes/limits%20-%20Some%20computational%20methodologies%20of%20the%20limits.html</loc>
+    <loc>https://icey4040727.github.io/wiki/Computational%20technologes/%E5%8C%BA%E9%97%B4%E5%86%8D%E7%8E%B0.html</loc>
     
     <lastmod>2025-12-26</lastmod>
     
@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://icey4040727.github.io/wiki/Computational%20technologes/%E5%8C%BA%E9%97%B4%E5%86%8D%E7%8E%B0.html</loc>
+    <loc>https://icey4040727.github.io/wiki/Computational%20technologes/limits%20-%20Some%20computational%20methodologies%20of%20the%20limits.html</loc>
     
     <lastmod>2025-12-26</lastmod>
     
@@ -233,6 +233,13 @@
   
   <url>
     <loc>https://icey4040727.github.io/tags/%E4%B8%AA%E4%BA%BA%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://icey4040727.github.io/tags/%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2025-12-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
