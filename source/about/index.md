@@ -7,11 +7,3 @@ date: 2025-12-01 01:25:41
 我喜歡做些小東西，分享自己的學習心得和一些 idea，感興趣可以訪問我的 github
 主頁： [我的 GitHub](https://github.com/ICEY4040727) 也可以通過其他方式聯係我
 tianai.icey@qq.com
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>

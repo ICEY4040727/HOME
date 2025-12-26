@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: ICEY安全屋
+title: $e \pi$胡言
 subtitle: ""
 description: "而我？我会说：“喳喳！”"
 keywords:
@@ -14,7 +14,7 @@ timezone: "Asia/Shanghai"
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://ICEY4040727.github.io
-root: /HOME/resources/
+root: /e/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -101,16 +101,49 @@ ignore:
 theme: next
 
 # Markdown 渲染配置 (支持 Obsidian 语法)
-marked:
-  prependRoot: true
-  postAsset: true
-  wikilinks: true
-
+# Sitemap 配置保持不变
 sitemap:
   path: sitemap.xml
   priority: 1.0
   changefreq: daily
   lastmod: true
+
+# Markdown 渲染配置 (使用 markdown-it，支持 Obsidian 语法和数学公式)
+markdown:
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: false
+    linkify: true
+    typographer: true
+    quotes: "“”‘’"
+  plugins:
+    - markdown-it-footnote
+    - markdown-it-sup
+    - markdown-it-sub
+    - markdown-it-obsidian # 替代 markdown-it-wikilinks (支持 Obsidian 语法)
+    - markdown-it-mathjax3 # 数学公式支持
+  # markdown-it 特有配置
+  anchors:
+    level: 2
+    collisionSuffix: "v"
+    permalink: true
+    permalinkClass: "header-anchor"
+    permalinkSymbol: "¶"
+
+# Wikilinks 配置（对应原来的 wikilinks: true）
+wikilinks:
+  base: "/"
+  uri_suffix: ".html"
+
+# MathJax 配置
+mathjax:
+  enable: true
+  cdn: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  options:
+    tex:
+      inlineMath: [["$", "$"], ['\\(', '\\)']]
+      displayMath: [["$$", "$$"], ['\\[', '\\]']]
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
