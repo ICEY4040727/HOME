@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/HOME/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/HOME/images/bird32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/HOME/images/bird.png">
+  <link rel="mask-icon" href="/HOME/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/HOME/css/main.css">
+
+
+<link rel="stylesheet" href="/HOME/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"icey4040727.github.io","root":"/HOME/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="¶SLAM的提出与发展 ¶SLAM是做什么的？ 自主机器人、自动驾驶通用分层模型  执行器层及其数学模型 控制层 感知、定位以及构图层——SLAM所在层 任务规划、决策层  https:&#x2F;&#x2F;www-personal.acfr.usyd.edu.au&#x2F;tbailey&#x2F;publications&#x2F;slamtutorial1.htm （关于SLAM发展系统性说明的论文） 学习资料 《SLAM十四讲》 状态">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SLAM概述和架构">
+<meta property="og:url" content="https://icey4040727.github.io/wiki/00-Inbox/SLAM%E6%A6%82%E8%BF%B0%E5%92%8C%E6%9E%B6%E6%9E%84.html">
+<meta property="og:site_name" content="$e \pi$胡言">
+<meta property="og:description" content="¶SLAM的提出与发展 ¶SLAM是做什么的？ 自主机器人、自动驾驶通用分层模型  执行器层及其数学模型 控制层 感知、定位以及构图层——SLAM所在层 任务规划、决策层  https:&#x2F;&#x2F;www-personal.acfr.usyd.edu.au&#x2F;tbailey&#x2F;publications&#x2F;slamtutorial1.htm （关于SLAM发展系统性说明的论文） 学习资料 《SLAM十四讲》 状态">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-10-21T10:36:59.581Z">
+<meta property="article:modified_time" content="2026-10-21T10:36:59.581Z">
+<meta property="article:author" content="ICEY">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://icey4040727.github.io/wiki/00-Inbox/SLAM%E6%A6%82%E8%BF%B0%E5%92%8C%E6%9E%B6%E6%9E%84">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>SLAM概述和架构 | $e \pi$胡言
+</title>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <!-- 原本的 Header 位置，我们留空或只保留移动端逻辑，
+         但在 Pisces 三栏改造中，我们把 PC 端菜单移到 main-inner 里 -->
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+        <!-- 移动端菜单按钮 -->
+        <div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/HOME/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">$e \pi$胡言</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/HOME/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/HOME/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/HOME/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/HOME/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/HOME/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/HOME/resources/" rel="section"><i class="fa fa-download fa-fw"></i>资源下载</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/HOME/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/HOME/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/HOME/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+
+      </div>
+    </header>
+
+    <main class="main">
+      
+      
+      <div class="main-inner">
+
+        
+        <div class="content-wrap-left">
+            
+            <div class="desktop-header-fix">
+                <div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/HOME/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">$e \pi$胡言</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/HOME/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/HOME/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/HOME/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/HOME/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/HOME/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/HOME/resources/" rel="section"><i class="fa fa-download fa-fw"></i>资源下载</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/HOME/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/HOME/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/HOME/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+
+            </div>
+            
+            <!-- 1.2 侧边栏 (直接引用你的 left.swig) -->
+            <aside class="sidebar">
+                <div class="sidebar-inner">
+                    <div class="left-sidebar-inner">
+  
+  <!-- 1. 头像与作者信息 -->
+  <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <img class="site-author-image" itemprop="image" alt="ICEY"
+        src="/HOME/images/bird-daodao.gif">
+    <p class="site-author-name" itemprop="name">ICEY</p>
+    <div class="site-description" itemprop="description">而我？我会说：“喳喳！”</div>
+  </div>
+
+  <!-- 2. 公告区域 (想要加的新功能) -->
+  <div class="sidebar-panel-announcement" style="margin: 15px 0; padding: 10px; background: #f9f9f9; border-radius: 3px; text-align: center;">
+    <h3 style="margin-top:0; font-size: 14px; font-weight: bold;">公告</h3>
+    <p style="font-size: 13px; margin: 0;">欢迎来到 ICEY 的安全屋！</p>
+  </div>
+
+  <!-- 3. 站点统计 (日志/分类/标签) -->
+  <div class="site-state-wrap motion-element">
+    <nav class="site-state">
+        <div class="site-state-item site-state-posts">
+          <a href="/HOME/archives/">
+            <span class="site-state-item-count">2</span>
+            <span class="site-state-item-name">日志</span>
+          </a>
+        </div>
+        <div class="site-state-item site-state-categories">
+          <a href="/HOME/categories/">
+            <span class="site-state-item-count">1</span>
+            <span class="site-state-item-name">分类</span>
+          </a>
+        </div>
+        <div class="site-state-item site-state-tags">
+          <a href="/HOME/tags/">
+            <span class="site-state-item-count">5</span>
+            <span class="site-state-item-name">标签</span>
+          </a>
+        </div>
+    </nav>
+  </div>
+
+  <!-- 4. 社交链接 -->
+  <div class="links-of-author motion-element">
+        <span class="links-of-author-item">
+          <a href="https://github.com/ICEY4040727" title="GitHub" target="_blank">
+            <i class="fab fa-github fa-fw"></i>
+            GitHub
+          </a>
+        </span>
+        <span class="links-of-author-item">
+          <a href="https://plus.google.com/yut59188" title="Google" target="_blank">
+            <i class="fab fa-google fa-fw"></i>
+            Google
+          </a>
+        </span>
+  </div>
+
+</div>
+                </div>
+            </aside>
+        </div>
+
+        
+        <div class="content-wrap">
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">SLAM概述和架构
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/HOME/wiki/">WIKI</a></li>
+            <li><a href="/HOME/wiki/00-Inbox/">00-INBOX</a></li>
+            <li>SLAM概述和架构</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h2 id="SLAM的提出与发展"><a class="header-anchor" href="#SLAM的提出与发展">¶</a>SLAM的提出与发展</h2>
+<h3 id="SLAM是做什么的？"><a class="header-anchor" href="#SLAM是做什么的？">¶</a>SLAM是做什么的？</h3>
+<p><strong>自主机器人、自动驾驶通用分层模型</strong></p>
+<ul>
+<li>执行器层及其数学模型</li>
+<li>控制层</li>
+<li>感知、定位以及构图层——SLAM所在层</li>
+<li>任务规划、决策层</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www-personal.acfr.usyd.edu.au/tbailey/publications/slamtutorial1.htm">https://www-personal.acfr.usyd.edu.au/tbailey/publications/slamtutorial1.htm</a> （关于SLAM发展系统性说明的论文）</p>
+<p><strong>学习资料</strong>
+《SLAM十四讲》</p>
+<p>状态、构图、观测、控制量</p>
+<h4 id="Landmarks——单线定位"><a class="header-anchor" href="#Landmarks——单线定位">¶</a>Landmarks——单线定位</h4>
+<p>拥有自身的估计系之后，缺乏矫正。</p>
+<h4 id="利用概率估计"><a class="header-anchor" href="#利用概率估计">¶</a>利用概率估计</h4>
+<p>贝叶斯概率：先验概率、后验概率</p>
+<p>SLAM = Simultaneous Localization And Mapping</p>
+<h5 id="输入"><a class="header-anchor" href="#输入">¶</a>输入</h5>
+<ul>
+<li>可见光视觉</li>
+<li>IMU</li>
+<li>激光雷达</li>
+<li>声纳</li>
+</ul>
+<h5 id="输出"><a class="header-anchor" href="#输出">¶</a>输出</h5>
+<ul>
+<li>我在当前环境的什么位置</li>
+<li>所在环境</li>
+</ul>
+<h5 id="场景"><a class="header-anchor" href="#场景">¶</a>场景</h5>
+<ul>
+<li>无人驾驶</li>
+<li>虚拟现实</li>
+<li>增强现实</li>
+<li>无人机</li>
+<li>自主服务机器人</li>
+</ul>
+<p><strong>Tango</strong> —— 可靠、开源
+但tango的解决方案埋有致命的缺陷——对传感器的依赖过于强
+apple phone</p>
+<h4 id="历史进程"><a class="header-anchor" href="#历史进程">¶</a>历史进程</h4>
+<p>两种SLAM——可见光视觉、激光</p>
+<p>一个可供激光雷达进行时间的 简单算法项目
+sky matching —— Ewan</p>
+<p>EKF-SLAM
+用到了卡曼滤波器（贝叶斯滤波器的一种特殊情况），把滤波器用到了使用上的重要一步</p>
+<p>FAST-SLAM
+partical filture
+粒子滤波器——随机撒点，全局slide（图定位）</p>
+<p>Graph-SLAM
+特征点（位置点与环境点），建立自身点和观测到环境特征点间进行node和edge的联系，然后基于图优化进行高精度定位</p>
+<p>Scan Matching
+激光——场景模型，ICP，迭代临近点</p>
+<p>EKF Monocular SLAM
+Javier Civera，Andrew J. Davison 让SLAM用更廉价的设备达到更好的效果</p>
+<p>PTAM-SLAM Georg Klein, David Murray
+07年提出了视觉SLAM的一个里程碑性操作，做了AR的一个验证。包括了ORB-SLAM的pipeline。
+多线程
+将线程独立化，分别指针</p>
+<p>捆绑约束</p>
+<p>RGBD-SLAM
+ORB-SLAM
+LSD-SLAM</p>
+<p>香港科技大学做的视觉融合</p>
+<p>cmu的博士张继
+LOAM
+V-LOAM</p>
+<p>google开源的cartographer（github开源）</p>
+<p>BLAM</p>
+<p>SegMatch
+点云的意义模糊（？）</p>
+<h3 id="从滤波器谈SLAM"><a class="header-anchor" href="#从滤波器谈SLAM">¶</a>从滤波器谈SLAM</h3>
+<ol>
+<li>基于自身运动模型估计位置</li>
+<li>传感器基于地图获得位置估计</li>
+<li>先验+后验-&gt;俗称 “融合”</li>
+</ol>
+<ul>
+<li>Odometry（里程计、航位推测法dead rackling）：encoder 预测</li>
+<li>Observation：观测</li>
+<li>基于概率估计所做的定位</li>
+</ul>
+<h4 id="更深入"><a class="header-anchor" href="#更深入">¶</a>更深入</h4>
+<p>给定：</p>
+<ul>
+<li>机器人的控制量U_k</li>
+</ul>
+<ol>
+<li>起始：可能在任意位置，概率为平均值</li>
+<li>获取观测：有门！那么只会在有门的位置附近
+更新状态</li>
+<li>继续往前走：更新自身的位置估计
+置信概率</li>
+<li>又获得观测：又有门！！
+更新状态</li>
+</ol>
+<p>预测：自身，当前ks预测1+k s</p>
+<h4 id="滤波器的致命问题"><a class="header-anchor" href="#滤波器的致命问题">¶</a>滤波器的致命问题</h4>
+<p>极多的特征点输入给概率估计，相当与一个概率表达中有几百上千的输入量。</p>
+<h3 id="SLAM的新突破——图优化"><a class="header-anchor" href="#SLAM的新突破——图优化">¶</a>SLAM的新突破——图优化</h3>
+<p>先验后验具有依赖性，联合估计必须要做vs融合，sliding window滑动窗口</p>
+<p>图优化：</p>
+<h3 id="SLAM-的知识架构"><a class="header-anchor" href="#SLAM-的知识架构">¶</a>SLAM 的知识架构</h3>
+<h4 id="传感器"><a class="header-anchor" href="#传感器">¶</a>传感器</h4>
+<p>做头戴式VRAR设备，解决方案还没有定型（尚待查证）</p>
+<ul>
+<li>imu
+imu的解算，imu抵带性非常强，并且需要至少上百上千hz，vr、ar需要保证延迟极小
+嵌入式设备在此会受到性能限制。</li>
+</ul>
+<h4 id="基本理论"><a class="header-anchor" href="#基本理论">¶</a>基本理论</h4>
+<ol>
+<li>滤波（随机估计）</li>
+</ol>
+<p>贝叶斯估计和观测
+卡尔曼估计与观测</p>
+<ol start="2">
+<li>
+<p>坐标系、刚体运动
+欧式旋转
+航空航天三自由度平台
+四元数（一种数学表达）</p>
+</li>
+<li>
+<p>相机模型、立体视觉、视觉几何</p>
+</li>
+</ol>
+<p>pin-hole Model</p>
+<p>Visual Geometry——fundamental/essential metrix 做基本解算</p>
+<h4 id="位姿估计与融合"><a class="header-anchor" href="#位姿估计与融合">¶</a>位姿估计与融合</h4>
+<ol>
+<li>基于自身量测的估计（Ransac PnP 的论文</li>
+<li>基于视觉的RANSAC PNP</li>
+<li>基于点云特征的ICP</li>
+<li>随机概率融合（VINS、LINS）</li>
+</ol>
+<p><strong>问题</strong>：以上位姿估计与融合是开环的，但我们知道：</p>
+<p>当相机收集信息时，一帧中会收集到许多信息
+也就是说有许多重复的信息</p>
+<p>当我们在做开环预测的时候，会进行</p>
+<h4 id="回路检测和图优化"><a class="header-anchor" href="#回路检测和图优化">¶</a>回路检测和图优化</h4>
+<p>问题：如何检测回路</p>
+<p>特征量是巨大的。
+feature histogram</p>
+<h5 id="词袋模型"><a class="header-anchor" href="#词袋模型">¶</a>词袋模型</h5>
+<p>词袋回路检测
+建立联系：这个地方我来过</p>
+<p>回路检测中压缩误差，基于图的概念减小误差，增大预测正确率</p>
+<ul>
+<li>image</li>
+<li>approximate nearest neighbor</li>
+<li>feature histogram</li>
+<li>feature vector</li>
+</ul>
+<h5 id="G2O"><a class="header-anchor" href="#G2O">¶</a>G2O</h5>
+<p>C er es</p>
+<h5 id="关键帧"><a class="header-anchor" href="#关键帧">¶</a>关键帧</h5>
+<h5 id="局部子图"><a class="header-anchor" href="#局部子图">¶</a>局部子图</h5>
+<h5 id="gs-ta-m"><a class="header-anchor" href="#gs-ta-m">¶</a>gs ta m</h5>
+<h4 id="地图环境表达"><a class="header-anchor" href="#地图环境表达">¶</a>地图环境表达</h4>
+<p>编码器：考虑精度问题，各大uga都会涉及</p>
+<ol>
+<li>点云</li>
+<li>拓扑地图——轨迹线</li>
+<li>语义地图——在点云的基础上通过语义信息标识点云，更好的理解。</li>
+<li>特征地图——在视觉基础上使用，特征提取（建议理解<strong>特征表达</strong>概念）解决不了背景单一的问题。</li>
+<li>……</li>
+</ol>
+<p><strong>地图的选取很重要</strong></p>
+<h4 id="深度学习"><a class="header-anchor" href="#深度学习">¶</a>深度学习</h4>
+<ol>
+<li>单目深度估计</li>
+<li>环境分割识别</li>
+<li>语义理解</li>
+<li>动态障碍物追踪和规避</li>
+<li>新的特征表达</li>
+</ol>
+<h5 id="图像标定"><a class="header-anchor" href="#图像标定">¶</a>图像标定</h5>
+<p>外参是几乎无意义的，因为外参要求静止。——我们需要估计的位置</p>
+<p>内参</p>
+<blockquote>
+<p>[!Note] 问题
+单目深度估计已经需要极大的耗能，双目又会膨胀多少呢？</p>
+</blockquote>
+<h5 id="point-net-环境分割识别和语义"><a class="header-anchor" href="#point-net-环境分割识别和语义">¶</a>point net 环境分割识别和语义</h5>
+<h5 id="动态障碍物追踪和规避"><a class="header-anchor" href="#动态障碍物追踪和规避">¶</a>动态障碍物追踪和规避</h5>
+<h5 id="新的特征表达-RSS"><a class="header-anchor" href="#新的特征表达-RSS">¶</a>新的特征表达 RSS</h5>
+<p>2015年提取新的特征表达
+attention mode 权重</p>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/HOME/wiki/">WIKI</a></li>
+            <li><a href="/HOME/wiki/00-Inbox/">00-INBOX</a></li>
+            <li>SLAM概述和架构</li>
+          
+  </ul>
+
+    
+    
+    
+
+
+          </div>
+          
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ICEY</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        </div>
+
+        
+        <div class="content-wrap-right">
+          <div class="right-sidebar">
+  
+  <!-- 1. 公告区域 -->
+  <div class="right-sidebar-panel" style="border-bottom: 1px dashed #ccc; padding-bottom: 10px; margin-bottom: 10px;">
+    <h3 style="margin-top: 0; font-size:  16px;">公告</h3>
+    <p>欢迎来到 ICEY 的安全屋！</p>
+  </div>
+
+  <!-- TrendRadar 热点聚合 -->
+  <div class="right-sidebar-panel" style="margin-top: 15px;">
+    <h3 style="margin: 0 0 10px 0; font-size: 14px; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 5px;">
+      <i class="fa fa-line-chart"></i> 实时热点
+    </h3>
+    
+    <!-- iframe 容器 -->
+    <div class="trend-radar-container" style="width: 100%; height: 400px; overflow: hidden; border-radius: 3px; border: 1px solid #eee;">
+      <iframe 
+        src="https://ICEY4040727.github.io/TrendRadar/" 
+        style="width: 100%; height: 100%; border: none;"
+        scrolling="yes">
+      </iframe>
+    </div>
+    
+    <div style="text-align: center; margin-top: 5px;">
+      <a href="https://ICEY4040727.github.io/TrendRadar/" target="_blank" style="font-size: 12px; color: #999;">
+        查看完整榜单 <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>
+
+</div>
+        </div>
+
+      </div>
+    </main>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+  <script src="/HOME/lib/anime.min.js"></script>
+  <script src="/HOME/lib/velocity/velocity.min.js"></script>
+  <script src="/HOME/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/HOME/js/utils.js"></script>
+
+<script src="/HOME/js/motion.js"></script>
+
+
+<script src="/HOME/js/schemes/pisces.js"></script>
+
+
+<script src="/HOME/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
