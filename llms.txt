@@ -1,0 +1,29 @@
+﻿# ICEY
+> 数学、SLAM 与大模型的学习笔记，以及偶尔的随笔。
+
+## Key Pages
+- [主页](https://icey4040727.github.io/HOME/)
+- [归档](https://icey4040727.github.io/HOME/archive/)
+- [关于我](https://icey4040727.github.io/HOME/about/)
+
+## Recent Posts
+- [Design](https://icey4040727.github.io/HOME/HOME/posts/design/): 创作的本质是“解构 + 重组”：真正的创造力来源于对已有事物进行拆分（解构），提取底层结构和范式，再以新方式重新组合。所谓天才是通过大量积累素材、提升解构能力而形成的，而非凭空原创。
+- [如何更准确地传达心意](https://icey4040727.github.io/HOME/HOME/posts/ru-he-geng-zhun-que-di-chuan-da-xin-yi/): 从社会语言学（Sociolinguistics）角度出发的一个核心建议是：必须能够识别并持续感知权力动态（power dynamics），尤其是谈话中的权力动态，并且对其保持高度警惕。语言从来不是中性的，它始终嵌入在具体
+- [2D旋转矩阵推导](https://icey4040727.github.io/HOME/HOME/posts/2d-xuan-zhuan-ju-zhen-tui-dao/): Change in frame：坐标系变换，刚体旋转等价于坐标系反向旋转，是SLAM中Body/World坐标系转换的底层逻辑；
+- [3D旋转矩阵与单轴旋转](https://icey4040727.github.io/HOME/HOME/posts/3d-xuan-zhuan-ju-zhen-yu-dan-zhou-xuan-zhuan/): 中间3×3矩阵 = 三维方向余弦旋转矩阵 ，矩阵每一项是两套坐标系基向量的点积（夹角余弦）
+- [Eigen与Sophus滤波实操](https://icey4040727.github.io/HOME/HOME/posts/eigen-yu-sophus-lu-bo-shi-cao/): Sophus：基于Eigen封装SO(3)/SE(3)李群李代数，专门处理旋转、位姿；
+- [EKF-IMU状态向量与运动模型](https://icey4040727.github.io/HOME/HOME/posts/ekf-imu-zhuang-tai-xiang-liang-yu-yun-dong-mo-xing/): Evolving State Of The EKF → 扩展卡尔曼滤波(EKF)的时变状态向量
+- [EKF-SLAM联合状态与协方差](https://icey4040727.github.io/HOME/HOME/posts/ekf-slam-lian-he-zhuang-tai-yu-xie-fang-cha/): 2D平面机器人：  是世界坐标系下平面坐标，  是机器人航向角（旋转角度），共3维。
+- [EKF-SLAM预测与更新数学模型](https://icey4040727.github.io/HOME/HOME/posts/ekf-slam-yu-ce-yu-geng-xin-shu-xue-mo-xing/): 这张图把滤波SLAM拆成两大核心模块：运动预测（估计步）、观测更新（观测步），同时给出线性矩阵形式 + 对应的贝叶斯概率表达，是 EKF-IMU状态向量与运动模型 中 IMU 状态转移、滤波SLAM预测更新循环 的数学浓
+- [IMU四元数姿态微分与积分](https://icey4040727.github.io/HOME/HOME/posts/imu-si-yuan-shu-zi-tai-wei-fen-yu-ji-fen/): 整合 05-四元数 前面各篇知识点：IMU硬件输出原始传感数据 → IMU完整状态向量定义 → 四元数姿态微分方程 → 离散时序姿态递推更新公式，是VIO/EKF-SLAM中IMU姿态解算核心数学流程。
+- [李群公理与SO3微分](https://icey4040727.github.io/HOME/HOME/posts/li-qun-gong-li-yu-so3-wei-fen/): 2. 李群元素（ ）是非线性流形，无法直接加减，因此引入微小增量与李代数斜对称矩阵；
+- [两坐标系旋转变换推导](https://icey4040727.github.io/HOME/HOME/posts/liang-zuo-biao-xi-xuan-zhuan-bian-huan-tui-dao/): 1. 固定全局坐标系 Oxyz（对应 欧式坐标系与刚体姿态表示 中的 World 世界系），基向量  ；
+- [滤波SLAM预测更新循环](https://icey4040727.github.io/HOME/HOME/posts/lu-bo-slam-yu-ce-geng-xin-xun-huan/): 承接 EKF-IMU状态向量与运动模型 中 EKF 滤波、IMU 状态方程内容，用机器人行进示意图直观解释卡尔曼类滤波器（EKF/粒子滤波）SLAM的完整循环逻辑，分「运动预测」「观测校正」两大步骤。
+- [欧式坐标系与刚体姿态表示](https://icey4040727.github.io/HOME/HOME/posts/ou-shi-zuo-biao-xi-yu-gang-ti-zi-tai-biao-shi/): 标题欧式坐标系和刚体姿态表示，承接 EKF-IMU状态向量与运动模型 中 EKF IMU 状态向量内容，讲解SLAM/VIO中两套核心坐标系、刚体位姿的两种数学表达（欧拉角、四元数）。
+- [齐次变换矩阵](https://icey4040727.github.io/HOME/HOME/posts/qi-ci-bian-huan-ju-zhen/): 若存在多坐标系级联（相机→IMU→世界），仅需要将多个 矩阵依次相乘，无需反复拆分旋转、平移分步计算，大幅简化代码与推导。
+- [三轴欧拉角复合旋转](https://icey4040727.github.io/HOME/HOME/posts/san-zhou-ou-la-jiao-fu-he-xuan-zhuan/): 物理含义：先绕机体u轴转  → 再绕中间w轴转  → 最后绕世界y轴转 ；矩阵乘法从右往左执行旋转。
+- [SE3特殊欧式群](https://icey4040727.github.io/HOME/HOME/posts/se3-te-shu-ou-shi-qun/): SE(3) 囊括三维空间中机器人/IMU所有合法刚体运动：任意旋转 + 任意平移，无拉伸、无缩放、无形变。机器人6自由度位姿（3旋转+3平移）完全对应SE(3)流形上的元素。
+- [四元数推导-从2D欧拉公式到3D](https://icey4040727.github.io/HOME/HOME/posts/si-yuan-shu-tui-dao-cong-2d-ou-la-gong-shi-dao-3d/): 左侧单位圆示意图：复数   代表平面内绕原点旋转 角，实部 、虚部 对应坐标轴投影。
+- [四元数与万向锁](https://icey4040727.github.io/HOME/HOME/posts/si-yuan-shu-yu-wan-xiang-suo/): 三轴欧拉角复合旋转 中三轴复合旋转存在该奇点：IMU姿态接近90°俯仰角时，姿态积分、滤波更新会出现数值突变、误差剧烈发散，无法稳定解算机器人朝向。
+- [SLAM的数学表达](https://icey4040727.github.io/HOME/HOME/posts/slam-de-shu-xue-biao-da/): 机器人运动控制量，比如轮子里程计、IMU加速度/角速度、底盘速度指令，用来描述机器人自身的运动驱动。
+- [SLAM概率定义与问题表述](https://icey4040727.github.io/HOME/HOME/posts/slam-gai-lu-ding-yi-yu-wen-ti-biao-shu/): 机器人运动控制量，比如轮子里程计、IMU加速度/角速度、底盘速度指令，用来描述机器人自身的运动驱动。

@@ -1,0 +1,5 @@
+﻿User-agent: *
+Allow: /
+Disallow: /HOME/search/
+
+Sitemap: https://icey4040727.github.io/HOME/sitemap-index.xml
